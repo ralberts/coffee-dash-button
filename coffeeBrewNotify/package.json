@@ -1,0 +1,16 @@
+{
+  "name": "coffee-brew-notify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "moment": "^2.18.1",
+    "request": "^2.81.0"
+  }
+}

@@ -1,0 +1,20 @@
+const REST_URL = 'http://mycompany.com/coffee/index.php';
+const BREW_TIME = 5;
+const PULL_INTERVAL = 30;
+const HIPCHAT_URL = 'http://hipchat.mycompany.com/hipchat/user';
+const EMAIL_SUFFIX = '@mycompany.com';
+const HIPCHAT_ROOM = '1111111';
+const HIPCHAT_ROOM_URL = 'https://mycompany.hipchat.com';
+const HIPCHAT_AUTH_TOKEN = 'auth_token_here';
+const HIPCHAT_INDIVIDUAL_USERS = ['user.name'];
+module.exports = {
+  REST_URL,
+  BREW_TIME,
+  PULL_INTERVAL,
+  HIPCHAT_URL,
+  EMAIL_SUFFIX,
+  HIPCHAT_ROOM,
+  HIPCHAT_ROOM_URL,
+  HIPCHAT_AUTH_TOKEN,
+  HIPCHAT_INDIVIDUAL_USERS
+}

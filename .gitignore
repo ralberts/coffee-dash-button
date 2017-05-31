@@ -1,5 +1,7 @@
 # Ignore actual config file
 coffeeBrewNotify/constants.js
+dashButtonPressed/constants.js
+**/constants.js
 
 # Logs
 logs

@@ -1,1 +1,1 @@
-sudo npm start
+sudo npm start &> output.txt

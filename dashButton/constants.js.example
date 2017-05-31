@@ -1,0 +1,10 @@
+const button1 = {
+	mac: '68:37:e9:44:90:e8',
+	coffeeType: 'Medium Roast'
+}
+
+const BUTTONS = [button1];
+
+module.exports = {
+	BUTTONS
+};

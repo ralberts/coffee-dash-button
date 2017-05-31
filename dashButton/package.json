@@ -1,0 +1,25 @@
+{
+  "name": "dash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scan": "dash-button scan",
+    "start": "babel-node index.js --presets es2015,stage-2"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-node6": "^11.0.0",
+    "babel-runtime": "^6.23.0",
+    "dash-button": "^2.0.1",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}

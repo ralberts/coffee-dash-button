@@ -4,7 +4,7 @@ const {BREW_TIME} = require('./constants');
 module.exports = class CoffeePot {
     constructor() {
         this.brewing = false;
-        this.callbacks = [];
+        this.callback;
     }
 
     alreadyBrewing() {
@@ -12,7 +12,7 @@ module.exports = class CoffeePot {
     }
 
     registerCallback(callback) {
-        this.callbacks.push(callback);
+        this.callback = callback;
     }
 
     brew(brewTime) {
@@ -41,8 +41,6 @@ module.exports = class CoffeePot {
     }
 
     brewDone() {
-        for(var cb of this.callbacks) {
-            cb();
-        }
+        this.callback();
     }
 }

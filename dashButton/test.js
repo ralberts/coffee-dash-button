@@ -37,7 +37,7 @@ function execute(button, config) {
 				const msg = config.coffeeType + " coffee finished brewing. Please drink responsibly.";
 				hipChat.notifyRoom(msg);
 			});
-		
+
 			coffee.brew(new Date().toISOString());
 		});
 	}
@@ -49,4 +49,3 @@ execute({addListener: (func) => {
 }}, {
 	config: { coffeeType: "Medium Roast" }
 });
-

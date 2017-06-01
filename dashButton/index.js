@@ -11,8 +11,7 @@ var hipChat = new HipChat();
 var coffee = new CoffeePot();
 
 BUTTONS.forEach((buttonConfig) => {
-	let button = new DashButton(buttonConfig.mac);
-	execute(button, buttonConfig);
+	execute(new DashButton(buttonConfig.mac), buttonConfig);
 });
 
 function execute(button, config) {
@@ -44,13 +43,9 @@ function execute(button, config) {
 				const msg = config.coffeeType + " coffee finished brewing. " + _.sample(HIPCHAT_TEXT_MESSAGE);
 				hipChat.notifyRoom(msg);
 			});
-		
+
 			coffee.brew(new Date().toISOString());
 		});
 	}
 }
 console.log("All ready!");
-
-
-
-

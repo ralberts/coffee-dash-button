@@ -1,10 +1,14 @@
 const button1 = {
-	mac: '68:37:e9:44:90:e8',
+	mac: 'xx:xx:xx:xx:xx:xx',
 	coffeeType: 'Medium Roast'
 }
 
 const BUTTONS = [button1];
+const REST_API = true;
+const REST_API_URL = "http://mywebsite.com/coffee/index.php";
 
 module.exports = {
-	BUTTONS
+	BUTTONS,
+	REST_API,
+	REST_API_URL
 };

@@ -8,11 +8,6 @@ import HipChat from './hipchat';
 var hipChat = new HipChat();
 var coffee = new CoffeePot();
 
-BUTTONS.forEach((buttonConfig) => {
-	let button = new DashButton(buttonConfig.mac);
-	execute(button, buttonConfig);
-});
-
 function execute(button, config) {
 	if(REST_API) {
 		let subscription = button.addListener(async () => {
@@ -49,6 +44,9 @@ function execute(button, config) {
 }
 console.log("All ready!");
 
-
-
+execute({addListener: (func) => {
+	func();
+}}, {
+	config: { coffeeType: "Medium Roast" }
+});
 

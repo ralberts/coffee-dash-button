@@ -1,10 +1,12 @@
 import DashButton from 'dash-button';
 const http = require('http');
 const request = require('request');
-const {BUTTONS, REST_API, REST_API_URL} = require('./constants');
+const {BUTTONS, REST_API, REST_API_URL, HIPCHAT_TEXT_MESSAGE} = require('./constants');
 
 import CoffeePot from './coffee';
 import HipChat from './hipchat';
+import _ from 'underscore';
+
 var hipChat = new HipChat();
 var coffee = new CoffeePot();
 
@@ -31,7 +33,7 @@ function execute(button, config) {
 		});
 	} else {
 		let subscription = button.addListener(async () => {
-			console.log("Button pressed! Coffee type: ", config.coffeeType);
+			console.log("Button pressed! Coffee type:", config.coffeeType);
 
 			if(coffee.alreadyBrewing()) {
 				console.log("Already brewing some coffee");
@@ -39,7 +41,7 @@ function execute(button, config) {
 			}
 
 			coffee.registerCallback(function() {
-				const msg = config.coffeeType + " coffee finished brewing. Please drink responsibly.";
+				const msg = config.coffeeType + " coffee finished brewing. " + _.sample(HIPCHAT_TEXT_MESSAGE);
 				hipChat.notifyRoom(msg);
 			});
 		

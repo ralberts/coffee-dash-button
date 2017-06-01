@@ -7,8 +7,38 @@ const BUTTONS = [button1];
 const REST_API = true;
 const REST_API_URL = "http://mywebsite.com/coffee/index.php";
 
+const REST_URL = 'http://mycompany.com/coffee/index.php';
+const BREW_TIME = 5;
+const PULL_INTERVAL = 30;
+const HIPCHAT_URL = 'http://hipchat.mycompany.com/hipchat/user';
+const EMAIL_SUFFIX = '@mycompany.com';
+const HIPCHAT_ROOM = '1111111';
+const HIPCHAT_ROOM_URL = 'https://mycompany.hipchat.com';
+const HIPCHAT_AUTH_TOKEN = 'auth_token_here';
+const HIPCHAT_INDIVIDUAL_USERS = ['user.name'];
+
+const HIPCHAT_TEXT_MESSAGE = ['Please drink responsibly.',
+							  'As Kevin says - Just give me my caffeine and nobody gets hurt!',
+							  'Coffee can’t cure everything, but it can cure the mornings!',
+							  'Error running WAKEUP.BAT: COFFEE.INI not found.',
+							  'Coffee, like life… One sip at a time.',
+							  'Death before decaf!!!',
+							  'Bean me up!',
+							  'COFFEE : Cup OF Finest Enjoyment Ever !!'
+							  ];
+
 module.exports = {
 	BUTTONS,
 	REST_API,
-	REST_API_URL
+	REST_API_URL,
+	REST_URL,
+	BREW_TIME,
+	PULL_INTERVAL,
+	HIPCHAT_URL,
+	EMAIL_SUFFIX,
+	HIPCHAT_ROOM,
+	HIPCHAT_ROOM_URL,
+	HIPCHAT_AUTH_TOKEN,
+	HIPCHAT_INDIVIDUAL_USERS,
+	HIPCHAT_TEXT_MESSAGE
 };

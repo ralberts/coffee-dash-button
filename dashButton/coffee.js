@@ -28,7 +28,7 @@ module.exports = class CoffeePot {
             console.log("Not setting timer.");
             return;
         }
-        console.log("Brewing time left (seconds):", startTimerInSeconds);
+        console.log("Brewing time left (minutes):", startTimerInSeconds / 60 + "m " + startTimerInSeconds % 60 + "s");
         this.startTimer(startTimerInSeconds);
     }
 

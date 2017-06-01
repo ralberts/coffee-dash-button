@@ -3,8 +3,8 @@ const http = require('http');
 const request = require('request');
 const {BUTTONS, REST_API, REST_API_URL} = require('./constants');
 
-var CoffeePot = require('../coffeeBrewNotify/coffee');
-var HipChat = require('../coffeeBrewNotify/hipchat');
+import CoffeePot from './coffee';
+import HipChat from './hipchat';
 var hipChat = new HipChat();
 var coffee = new CoffeePot();
 

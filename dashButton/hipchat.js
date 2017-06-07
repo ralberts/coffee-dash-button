@@ -22,8 +22,8 @@ module.exports = class HipChat {
         }
     }
     
-    notifyRoom(message) {
-        console.log('Notifying room coffee is done.');
+    notifyRoom(message, notify = true, from = "Coffee Button") {
+        console.log('Notifying coffee room.');
         request({
             url: HIPCHAT_ROOM_URL + '/v2/room/' + HIPCHAT_ROOM + '/notification',
             method: 'POST',
@@ -32,9 +32,9 @@ module.exports = class HipChat {
             },
             json: true,
             body: {
-                'from': 'Coffee Button',
+                'from': from,
                 'message': message,
-                'notify': true
+                'notify': notify
             }
         }, function (error, response, body) {
             console.log('Response from hipchat post:', response && response.statusCode);

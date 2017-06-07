@@ -6,6 +6,7 @@ const button1 = {
 const BUTTONS = [button1];
 const REST_API = true;
 const REST_API_URL = "http://mywebsite.com/coffee/index.php";
+const REST_API_HEALTH_URL = "http://mywebsite.com/coffee/hipchat-request.php";
 
 const REST_URL = 'http://mycompany.com/coffee/index.php';
 const BREW_TIME = 5;

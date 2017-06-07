@@ -9,6 +9,7 @@ import _ from 'underscore';
 
 var hipChat = new HipChat();
 var coffee = new CoffeePot();
+var health = new HealthStatus();
 
 BUTTONS.forEach((buttonConfig) => {
 	execute(new DashButton(buttonConfig.mac), buttonConfig);
@@ -48,4 +49,6 @@ function execute(button, config) {
 		});
 	}
 }
+
+health.run();
 console.log("All ready!");

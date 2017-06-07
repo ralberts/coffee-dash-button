@@ -6,6 +6,7 @@ const {BUTTONS, REST_API, REST_API_URL, HIPCHAT_TEXT_MESSAGE} = require('./const
 import CoffeePot from './coffee';
 import HipChat from './hipchat';
 import _ from 'underscore';
+import HealthStatus from './healthstatus';
 
 var hipChat = new HipChat();
 var coffee = new CoffeePot();

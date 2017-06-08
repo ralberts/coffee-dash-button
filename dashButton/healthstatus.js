@@ -18,17 +18,24 @@ module.exports = class HealthStatus {
 
             if(body === "") { return; }
 
-            var json = JSON.parse(body);
-            
-            if(json.action === 'test') {
-                console.log("Request for health status.");
-                request.delete(REST_API_HEALTH_URL);
-                this.hipChat.notifyRoom("We're still running and waiting for someone to brew some coffee!", false, "Coffee Health Status");
+	    try {
 
-                // var file = fs.readFileSync("./output.txt", "utf8");
-		// file = file.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-             	// this.hipChat.notifyRoom("Current log: " + file, false, "Coffee Health Status");
-            }
+            	var json = JSON.parse(body);
+            
+            	if(json.action === 'test') {
+                	console.log("Request for health status.");
+	                request.delete(REST_API_HEALTH_URL);
+        	        this.hipChat.notifyRoom("We're still running and waiting for someone to brew some coffee!", false, "Coffee Health Status");
+
+                	// var file = fs.readFileSync("./output.txt", "utf8");
+			// file = file.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+	             	// this.hipChat.notifyRoom("Current log: " + file, false, "Coffee Health Status");
+        	}
+
+	    catch (e) {
+		console.log("Error parsing health request.", e);
+	    }
+
         });
     }
 

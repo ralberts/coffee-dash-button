@@ -32,7 +32,7 @@ module.exports = class HealthStatus {
 	             	// this.hipChat.notifyRoom("Current log: " + file, false, "Coffee Health Status");
         	}
 
-	    catch (e) {
+	    } catch (e) {
 		console.log("Error parsing health request.", e);
 	    }
 

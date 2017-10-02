@@ -18,7 +18,7 @@ switch ($method) {
       //   echo $input["action"] . " started at: " . $input["time"];
       //   echo json_decode({"color": "green", "message": "It's going to be sunny tomorrow! (yey)", "notify": false, "message_format": "text"});
         echo '{"message": "The coffee gods heard your request, sending a message to see if everything is running... wait to hear back...", "notify": false, "message_format": "text"}';
-        file_put_contents("request.txt", '{ action: "test" }');
+        file_put_contents("request.txt", '{ "action": "test" }');
         break;
   case 'DELETE':
         file_put_contents("request.txt", "");

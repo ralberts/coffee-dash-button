@@ -1,6 +1,7 @@
 const button1 = {
 	mac: 'xx:xx:xx:xx:xx:xx',
-	coffeeType: 'Medium Roast'
+	coffeeType: 'Medium Roast',
+	networkInterface: 'eth0'
 }
 
 const BUTTONS = [button1];

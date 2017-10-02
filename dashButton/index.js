@@ -13,7 +13,7 @@ var coffee = new CoffeePot();
 var health = new HealthStatus();
 
 BUTTONS.forEach((buttonConfig) => {
-	execute(new DashButton(buttonConfig.mac), buttonConfig);
+	execute(new DashButton(buttonConfig.mac, { networkInterface: buttonConfig.networkInterface }), buttonConfig);
 });
 
 function execute(button, config) {

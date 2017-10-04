@@ -19,15 +19,26 @@ const HIPCHAT_ROOM_URL = 'https://mycompany.hipchat.com';
 const HIPCHAT_AUTH_TOKEN = 'auth_token_here';
 const HIPCHAT_INDIVIDUAL_USERS = ['user.name'];
 
-const HIPCHAT_TEXT_MESSAGE = ['Please drink responsibly.',
-							  'As Kevin says - Just give me my caffeine and nobody gets hurt!',
-							  'Coffee can’t cure everything, but it can cure the mornings!',
-							  'Error running WAKEUP.BAT: COFFEE.INI not found.',
-							  'Coffee, like life… One sip at a time.',
-							  'Death before decaf!!!',
-							  'Bean me up!',
-							  'COFFEE : Cup OF Finest Enjoyment Ever !!'
-							  ];
+const HIPCHAT_TEXT_MESSAGE = [  
+								'Please drink responsibly.',
+								'As Kevin says - Just give me my caffeine and nobody gets hurt!',
+								'Coffee can’t cure everything, but it can cure the mornings!',
+								'Error running WAKEUP.BAT: COFFEE.INI not found.',
+								'Coffee, like life… One sip at a time.',
+								'Death before decaf!!!',
+								'Bean me up!',
+								'COFFEE : Cup OF Finest Enjoyment Ever!',
+								'Hello. My name is Laura and I’m a coffeeholic. It’s been 38 seconds since my last sip.',
+								'Nothing really can be said after the first sip but a desiringly quiet utter of, “mmmm, coffeeee”.',
+								'Coffee, all the goodness of life in a cup.',
+								'Coffee is like drinking sunshine!',
+								'Latte is French for “You just paid too much for your coffee”.',
+								'OCD: Obsessive Coffee Disorder',
+								'SHHHH My coffee and I are having a moment.  I’ll deal with you later.',
+								'Not to get technical, but according to chemistry, coffee is a solution.',
+								'It’s not procrastinating if you’re drinking coffee, it’s procaffinating.',
+								'Coffee is the foundation of my food pyramid.'
+							];
 
 module.exports = {
 	BUTTONS,

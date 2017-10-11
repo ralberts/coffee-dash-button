@@ -7,11 +7,12 @@ import CoffeePot from './coffee';
 import HipChat from './hipchat';
 import _ from 'underscore';
 import HealthStatus from './healthstatus';
+import Messages from './messages';
 
 var hipChat = new HipChat();
 var coffee = new CoffeePot();
 var health = new HealthStatus();
-var messages = new messages();
+var messages = new Messages();
 
 BUTTONS.forEach((buttonConfig) => {
 	execute(new DashButton(buttonConfig.mac, { networkInterface: buttonConfig.networkInterface }), buttonConfig);

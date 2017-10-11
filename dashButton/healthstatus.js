@@ -44,9 +44,14 @@ module.exports = class HealthStatus {
             console.log("Already running health interval check");
             return;
         }
-
-	    this.execute();
-	    this.interval = setInterval(() => { this.execute() }, PULL_INTERVAL * 1000);
+//	this.execute();
+	this.interval = setInterval(() => { 
+		try {
+			this.execute();
+		} catch (e) {
+			console.log("Error in execute for health status.", e);
+		}
+	}, PULL_INTERVAL * 1000);
     }
 
     stop() {

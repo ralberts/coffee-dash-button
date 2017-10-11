@@ -6,6 +6,7 @@ module.exports = class Messages {
         this.messages = [];
         this.parsedData;
         this.source = "./messages.json";
+	this.average;
         this.init();
     }
 
@@ -14,7 +15,7 @@ module.exports = class Messages {
             var rawData = fs.readFileSync(this.source);
             this.parsedData = JSON.parse(rawData).messages;
             this.loadMessages();
-            var average = this.getAverage();
+            this.average = this.getAverage();
             return this.chooseRandomMessage();
         } catch (e) {
             console.log("ERROR! Problem retrieving random message.", e);
@@ -25,7 +26,7 @@ module.exports = class Messages {
     init() {
         if (!fs.existsSync(this.source)) {
             var messages = { "messages": HIPCHAT_TEXT_MESSAGE.map(msg => ({ "text": msg, "count": 0 })) };
-            fs.writeFileSync("messages.json", messages);
+            fs.writeFileSync("messages.json", JSON.stringify(messages));
         }
     }
 
@@ -45,7 +46,7 @@ module.exports = class Messages {
 
     chooseRandomMessage() {
         var msgIndex = Math.floor(Math.random() * this.messages.length);
-        while (this.parsedData[msgIndex].count > average) {
+        while (this.parsedData[msgIndex].count > this.average) {
             console.log("This message is boring, skip!");
             msgIndex = Math.floor(Math.random() * this.messages.length);
         }

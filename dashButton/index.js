@@ -8,6 +8,8 @@ import HipChat from './hipchat';
 import _ from 'underscore';
 import HealthStatus from './healthstatus';
 
+var fs = require('fs');
+
 var hipChat = new HipChat();
 var coffee = new CoffeePot();
 var health = new HealthStatus();
@@ -42,13 +44,58 @@ function execute(button, config) {
 			}
 
 			coffee.registerCallback(function() {
-				const msg = config.coffeeType + " coffee finished brewing. " + _.sample(HIPCHAT_TEXT_MESSAGE);
+				// const msg = config.coffeeType + " coffee finished brewing. " + _.sample(HIPCHAT_TEXT_MESSAGE);
+				const msg = config.coffeeType + " coffee finished brewing. " + grabWeightedRandomMessage();
 				hipChat.notifyRoom(msg);
 			});
 
 			coffee.brew(new Date().toISOString());
 		});
 	}
+}
+
+function grabWeightedRandomMessage() {
+	var source = "./messages.json";
+	var rawData = fs.readFileSync(source);
+	var parsedData = JSON.parse(rawData).messages;
+	var messages = [];
+	getMessages();
+	var average = getAverage();
+	chooseRandomMessage();
+}
+
+function getMessages() {
+    for (var index in parsedData) {
+        messages.push(parsedData[index].text);
+    }
+}
+
+function getAverage() {
+    var count = 0;
+    for (var index in parsedData) {
+        count += parsedData[index].count;
+    }
+    return count / 18;
+}
+
+function chooseRandomMessage() {
+        var msgIndex = Math.floor(Math.random() * messages.length);
+        if (parsedData[msgIndex].count <= average) {
+			// console.log(messages[msgIndex]);
+            updateMessageCount(msgIndex);
+			return messages[msgIndex];
+        } else {
+			console.log("This message is boring, skip!");
+            chooseRandomMessage();
+        }
+}
+
+function updateMessageCount(index) {
+    parsedData[index].count++;
+    var updatedData = JSON.stringify({
+        "messages": parsedData
+    }, null, 4);
+    fs.writeFileSync("messages.json", updatedData);
 }
 
 health.run();

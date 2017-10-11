@@ -80,14 +80,12 @@ function getAverage() {
 
 function chooseRandomMessage() {
         var msgIndex = Math.floor(Math.random() * messages.length);
-        if (parsedData[msgIndex].count <= average) {
-			// console.log(messages[msgIndex]);
-            updateMessageCount(msgIndex);
-			return messages[msgIndex];
-        } else {
+		while (parsedData[msgIndex].count > average) {
 			console.log("This message is boring, skip!");
-            chooseRandomMessage();
-        }
+			msgIndex = Math.floor(Math.random() * messages.length);
+		}
+		updateMessageCount(msgIndex);
+		return messages[msgIndex];
 }
 
 function updateMessageCount(index) {

@@ -51,12 +51,6 @@ module.exports = class Messages {
     chooseRandomMessage() {
         var weightedArray = this.determineWeights();
         var msgIndex = Math.floor(Math.random() * weightedArray.length);
-        console.log("Randomly chosen index: ", weightedArray[msgIndex]);
-        console.log("Weight assigned to choice: ", Math.floor((1 - (this.parsedData[weightedArray[msgIndex]].count / this.getTotal())) * 10))
-        while (this.parsedData[msgIndex].count > this.average) {
-            console.log("This message is boring, skip!");
-            msgIndex = Math.floor(Math.random() * this.messages.length);
-        }
         this.updateMessageCount(weightedArray[msgIndex]);
         return this.messages[weightedArray[msgIndex]];
     }
@@ -72,7 +66,7 @@ module.exports = class Messages {
     determineWeights() {
         var weightedArray = [];
         for (var index in parsedData) {
-            for (var x = 0; x < Math.floor((1 - (parsedData[index].count / this.getTotal())) * 10); x++ ) {
+            for (var x = 1; x <= Math.floor((1 - (parsedData[index].count / this.getTotal())) * 100 - 90); x++){
                 weightedArray.push(index);
             }
         }

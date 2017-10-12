@@ -37,11 +37,15 @@ module.exports = class Messages {
     }
 
     getAverage() {
+        return this.getTotal() / 18;
+    }
+
+    getTotal() {
         var count = 0;
         for (var index in this.parsedData) {
             count += this.parsedData[index].count;
         }
-        return count / 18;
+        return count;
     }
 
     chooseRandomMessage() {
@@ -68,7 +72,7 @@ module.exports = class Messages {
     determineWeights() {
         var weightedArray = [];
         for (var index in parsedData) {
-            for (var x = 0; x < Math.floor((1 - (parsedData[index].count / getTotal())) * 10); x++ ) {
+            for (var x = 0; x < Math.floor((1 - (parsedData[index].count / this.getTotal())) * 10); x++ ) {
                 weightedArray.push(index);
             }
         }

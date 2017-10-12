@@ -25,7 +25,7 @@ module.exports = class Messages {
 
     init() {
         if (!fs.existsSync(this.source)) {
-            var messages = { "messages": HIPCHAT_TEXT_MESSAGE.map(msg => ({ "text": msg, "count": 0 })) };
+            var messages = { "messages": HIPCHAT_TEXT_MESSAGE.map(msg => ({ "text": msg, "count": 1 })) };
             fs.writeFileSync("messages.json", JSON.stringify(messages));
         }
     }
@@ -65,10 +65,13 @@ module.exports = class Messages {
 
     determineWeights() {
         var weightedArray = [];
-        for (var index in parsedData) {
-            for (var x = 1; x <= Math.floor((1 - (parsedData[index].count / this.getTotal())) * 100 - 90); x++){
-                weightedArray.push(index);
-            }
+        for (var index in this.parsedData) {
+	    if ( this.parsedData[index].count < this.getAverage()) {
+		weightedArray.push(index);
+	    }
+            //for (var x = 1; x <= Math.floor((1 - (this.parsedData[index].count / this.getTotal())) * 100 - 90); x++){
+            //    weightedArray.push(index);
+            //}
         }
         return weightedArray;
     }

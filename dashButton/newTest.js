@@ -44,7 +44,7 @@ function press() {
   };
   console.log("press: ", press);
   collection.push(press);
-  firebase.database().goOffline();
+  // firebase.database().goOffline();
 }
 
 function printAll(ref) {
@@ -145,8 +145,10 @@ function lastTypeBrewed() {
   collection.once('value')
     .then(function (snap) {
       var presses = _.map(snap.val());
-      console.log(_.sortBy(presses, "date").reverse()[0].type);
-      console.log(_.sortBy(presses, "date").reverse()[0].date);
+      var type = _.sortBy(presses, "date").reverse()[0].type;
+      console.log(type);
+      var date = _.sortBy(presses, "date").reverse()[0].date;
+      console.log(new Date(date).toDateString());
       firebase.database().goOffline();
     });
 }

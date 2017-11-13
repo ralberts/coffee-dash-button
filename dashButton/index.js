@@ -5,11 +5,13 @@ const {BUTTONS, REST_API, REST_API_URL, HIPCHAT_TEXT_MESSAGE} = require('./const
 
 import CoffeePot from './coffee';
 import HipChat from './hipchat';
+import FirebaseDB from './firebaseDB';
 import _ from 'underscore';
 import HealthStatus from './healthstatus';
 
-var hipChat = new HipChat();
 var coffee = new CoffeePot();
+var hipChat = new HipChat();
+var firebaseDB = new FirebaseDB();
 var health = new HealthStatus();
 
 BUTTONS.forEach((buttonConfig) => {
@@ -45,8 +47,9 @@ function execute(button, config) {
 				const msg = config.coffeeType + " coffee finished brewing. " + _.sample(HIPCHAT_TEXT_MESSAGE);
 				hipChat.notifyRoom(msg);
 			});
-
-			coffee.brew(new Date().toISOString());
+			const date = new Date().toISOString();
+			firebaseDB.press(config.coffeeType, date);
+			coffee.brew(date);
 		});
 	}
 }

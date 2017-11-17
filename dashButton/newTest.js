@@ -1,18 +1,26 @@
 'use strict';
 const {DB_CONFIG} = require('./constants');
+const HOURS_OFFSET = 17;
 
 var fs = require('fs');
 var firebase = require('firebase');
 var _ = require('underscore');
 var args = process.argv.slice(2);
 var methods = [
-  'press', 'sample', 'getTotalPots', 'getPercentageByType', 'lastTimeBrewedByType', 'lastTypeBrewed'
+  'press',
+  'sample',
+  'getTotalPots',
+  'getPercentageByType',
+  'lastTimeBrewedByType',
+  'lastTypeBrewed',
+  'deleteOlderThan'
 ];
 
 firebase.initializeApp(DB_CONFIG);
 var database = firebase.database();
 
 args.forEach(function(val, index) {
+  console.log("args[" + index + "]: ", val);
   if (_.contains(methods, val)) {
     if (args[index + 1] && Number.isInteger(parseInt(args[index + 1]))) {
       for (var i = 0; i < parseInt(args[index + 1]); i++) {
@@ -26,6 +34,8 @@ args.forEach(function(val, index) {
   }
 });
 
+
+
 function press() {
   var collection = database.ref('presses');
   var types = [
@@ -33,9 +43,11 @@ function press() {
     "Morning Roast",
     "French Roast"
   ];
-
+  // let date = new Date();
+  // date.setHours(date.getHours() + HOURS_OFFSET);
   var press = {
-    date: new Date().toISOString(),
+    // date: date.toISOString(),
+    date: new Date(new Date().setHours(new Date().getHours() + HOURS_OFFSET)).toISOString(),
     type: _.sample(types)
   };
   console.log("press: ", press);
@@ -69,6 +81,34 @@ function getTotalPots() {
       console.log(_.map(presses, 'type').length + ' pots have been brewed.');
       return _.map(presses, 'type').length;
       firebase.database().goOffline();
+    });
+}
+
+function deleteOlderThan() {
+  console.log('method start');
+  var collection = database.ref('presses');
+  collection.once('value')
+    .then((snap) => {
+      var presses = snap.val();
+      var t = 0;
+      var f = 0;
+      let filteredArray = _.filter(presses, (press) => {
+        return Date.parse(press.date) > new Date(2017, 10, 13)
+        // if(Date.parse(press.date) > new Date(2017, 10, 13)) {
+        //   t++;
+        // } else {
+        //   f++;
+        // }
+      });
+      _.filter(filteredArray, (press) => {
+        if(Date.parse(press.date) > new Date(2017, 10, 13)) {
+          t++;
+        } else {
+          f++;
+        }
+      });
+      console.log("true: ", t);
+      console.log("false: ", f);
     });
 }
 

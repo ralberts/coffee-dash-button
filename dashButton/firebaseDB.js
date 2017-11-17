@@ -8,15 +8,15 @@ module.exports = class FirebaseDB {
     constructor() {};
 
     press(type, date) {
-    console.log("Press()", type);
-	var press = {
-        "date": date,
-        "type": type
-    };
-	const collection = database.ref("presses");
-	console.log("----Collection----", collection);
-    console.log("press: ", press);
-    collection.push(press);
-	console.log("After press");
+        console.log("Press()", type);
+    	var press = {
+            "date": date,
+            "type": type
+        };
+    	const collection = database.ref("presses");
+    	console.log("----Collection----", collection);
+        console.log("press: ", press);
+        collection.push(press);
+    	console.log("After press");
     };
 }

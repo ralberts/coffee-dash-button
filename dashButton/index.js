@@ -2,6 +2,7 @@ import DashButton from 'dash-button';
 const http = require('http');
 const request = require('request');
 const {BUTTONS, REST_API, REST_API_URL, HIPCHAT_TEXT_MESSAGE} = require('./constants');
+const HOURS_OFFSET = 17;
 
 import CoffeePot from './coffee';
 import HipChat from './hipchat';
@@ -47,8 +48,9 @@ function execute(button, config) {
 				const msg = config.coffeeType + " coffee finished brewing. " + _.sample(HIPCHAT_TEXT_MESSAGE);
 				hipChat.notifyRoom(msg);
 			});
-			const date = new Date().toISOString();
-			coffee.brew(date);
+			let date = new Date();
+			date.setHours(date.getHours() + HOURS_OFFSET);
+			coffee.brew(date.toISOString());
 			console.log("Post brew");
 			firebaseDB.press(config.coffeeType, date);
 			console.log("Post db");

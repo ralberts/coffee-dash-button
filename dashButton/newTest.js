@@ -13,7 +13,8 @@ var methods = [
   'getPercentageByType',
   'lastTimeBrewedByType',
   'lastTypeBrewed',
-  'deleteOlderThan'
+  'deleteOlderThan',
+  'getStats'
 ];
 
 firebase.initializeApp(DB_CONFIG);
@@ -34,25 +35,38 @@ args.forEach(function(val, index) {
   }
 });
 
+// function getStats() {
+//   var collection
+// }
 
-
-function press() {
-  var collection = database.ref('presses');
-  var types = [
-    "Morning Roast",
-    "Morning Roast",
-    "French Roast"
-  ];
-  // let date = new Date();
-  // date.setHours(date.getHours() + HOURS_OFFSET);
-  var press = {
-    // date: date.toISOString(),
-    date: new Date(new Date().setHours(new Date().getHours() + HOURS_OFFSET)).toISOString(),
-    type: _.sample(types)
-  };
-  console.log("press: ", press);
-  collection.push(press);
-  // firebase.database().goOffline();
+function press(file) {
+  var collection = database.ref('test_presses');
+  if (!file) {
+    var types = [
+      "Morning Roast",
+      "Morning Roast",
+      "French Roast"
+    ];
+    const year = 2017;
+    const month = 10;
+    const max = 16;
+    const min = 13;
+    const day = Math.random() * (max - min) + min;
+    const hour = Math.random() * (17 - 5) + 5;
+    let date = new Date(year, month, day, hour);
+    // date.setHours(date.getHours() + HOURS_OFFSET);
+    var press = {
+      date: date,
+      // date: new Date(new Date().setHours(new Date().getHours() + HOURS_OFFSET)).toISOString(),
+      type: _.sample(types)
+    };
+    console.log("press: ", press);
+    collection.push(press);
+    // firebase.database().goOffline();
+  } else {
+    file = require("./" + file);
+    console.log(new Date(Date.parse(file.date)).toISOString());
+  }
 }
 
 function printAll(ref) {
@@ -74,7 +88,7 @@ function sample() {
 }
 
 function getTotalPots() {
-  var collection = database.ref('presses');
+  var collection = database.ref('test_presses');
   collection.once('value')
     .then(function (snap) {
       var presses = snap.val();
@@ -86,7 +100,7 @@ function getTotalPots() {
 
 function deleteOlderThan() {
   console.log('method start');
-  var collection = database.ref('presses');
+  var collection = database.ref('test_presses');
   collection.once('value')
     .then((snap) => {
       var presses = snap.val();
@@ -113,7 +127,7 @@ function deleteOlderThan() {
 }
 
 function getPercentageByType() {
-  var collection = database.ref('presses');
+  var collection = database.ref('test_presses');
   var french = 0;
   var medium = 0;
   collection.once('value')
@@ -134,7 +148,7 @@ function getPercentageByType() {
 }
 
 function lastTimeBrewedByType(type) {
-  var collection = database.ref('presses');
+  var collection = database.ref('test_presses');
   var one_day = 1000*60*60*24;
   var one_hour = 1000*60*60;
   var one_minute = 1000*60;
@@ -177,7 +191,7 @@ function lastTimeBrewedByType(type) {
 }
 
 function lastTypeBrewed() {
-  var collection = database.ref('presses');
+  var collection = database.ref('test_presses');
   collection.once('value')
     .then(function (snap) {
       var presses = _.map(snap.val());

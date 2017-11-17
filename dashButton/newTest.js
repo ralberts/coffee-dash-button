@@ -1,4 +1,5 @@
 'use strict';
+const {DB_CONFIG} = require('./constants');
 
 var fs = require('fs');
 var firebase = require('firebase');
@@ -8,12 +9,7 @@ var methods = [
   'press', 'sample', 'getTotalPots', 'getPercentageByType', 'lastTimeBrewedByType', 'lastTypeBrewed'
 ];
 
-var config = {
-  apiKey: 'AIzaSyDMNa01ILPSggoTa8CURd_Bt52eDaKN_Fc',
-  authDomain: 'coffee-dash-button.firebaseapp.com',
-  databaseURL: 'https://coffee-dash-button.firebaseio.com/'
-}
-firebase.initializeApp(config);
+firebase.initializeApp(DB_CONFIG);
 var database = firebase.database();
 
 args.forEach(function(val, index) {

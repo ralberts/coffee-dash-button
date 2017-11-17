@@ -4,6 +4,8 @@ const button1 = {
 	networkInterface: 'eth0'
 }
 
+const config = {};
+
 const BUTTONS = [button1];
 const REST_API = true;
 const REST_API_URL = "http://mywebsite.com/coffee/index.php";
@@ -18,8 +20,9 @@ const HIPCHAT_ROOM = '1111111';
 const HIPCHAT_ROOM_URL = 'https://mycompany.hipchat.com';
 const HIPCHAT_AUTH_TOKEN = 'auth_token_here';
 const HIPCHAT_INDIVIDUAL_USERS = ['user.name'];
+const DB_CONFIG = config;
 
-const HIPCHAT_TEXT_MESSAGE = [  
+const HIPCHAT_TEXT_MESSAGE = [
 								'Please drink responsibly.',
 								'As Kevin says - Just give me my caffeine and nobody gets hurt!',
 								'Coffee can’t cure everything, but it can cure the mornings!',

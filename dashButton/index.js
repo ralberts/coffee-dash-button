@@ -48,13 +48,10 @@ function execute(button, config) {
 				hipChat.notifyRoom(msg);
 			});
 			const date = new Date().toISOString();
-			//console.log("Firebase:", firebaseDB);
 			coffee.brew(date);
 			console.log("Post brew");
 			firebaseDB.press(config.coffeeType, date);
 			console.log("Post db");
-			//coffee.brew(date);
-			//console.log("Post brew");
 		});
 	}
 }
